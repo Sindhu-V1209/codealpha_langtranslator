@@ -1,0 +1,26 @@
+BY USING MICROSOFT TRANSLATOR:
+
+# we should import 'requests' to interact with Microsoft Translator
+import requests
+
+def translate_text(text, dest_language, subscription_key):
+    endpoint = "https://api.cognitive.microsofttranslator.com/translate"
+    params = {
+        'api-version': '3.0',
+        'to': dest_language
+    }
+    headers = {
+        'Ocp-Apim-Subscription-Key': subscription_key,
+        'Content-Type': 'application/json'
+    }
+    body = [{
+        'text': text
+    }]
+    response = requests.post(endpoint, params=params, headers=headers, json=body)
+    return response.json()[0]['translations'][0]['text']
+
+input_text = "Hello, how are you?"
+target_language = "es"  # Spanish
+subscription_key = "your_subscription_key_here"  # Replace with your subscription key
+translated_text = translate_text(input_text, target_language, subscription_key)
+print(f"Translated text: {translated_text}")
