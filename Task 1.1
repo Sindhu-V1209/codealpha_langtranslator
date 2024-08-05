@@ -1,0 +1,17 @@
+# Using Google Translate API
+# we should import 'googletrans' library:
+from googletrans import Translator
+
+def translate_text(text, dest_language):
+    translator = Translator()
+    translation = translator.translate(text, dest=dest_language)
+    return translation.text
+
+# Example usage
+input_text = "Hello, how are you?"
+target_language = "es" 
+translated_text = translate_text(input_text, target_language)
+print(f"Translated text: {translated_text}")
+
+
+
